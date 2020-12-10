@@ -19,6 +19,11 @@ public class TargetWordConstructAllPossibleCombinationsFromWordBank {
         System.out.println(allConstruct("purple", new String[]{"purp", "p", "ur", "le", "purpl"}));
         System.out.println(allConstruct("enterapotentpot", new String[]{"a", "p", "ent", "enter", "ot", "o", "t"}));
 
+        // n :- wordbank.length and m :- target word length
+        // In this case if there are n^m leaf nodes, there re n^m sub arrays.
+        // So even with memoization, the time complexity will not improved. So the Time complexity remains O(n^m * m)
+        // As for space complexity, its O(m). In case of when o/p is exponential, so will the space complexity too,
+        // so in that case we just include the height of the recursion tree or size of call stack.
         Map<String, List<List<String>>> memo1 = new HashMap<>();
         List<List<String>> allConstruct = allConstructWithMemoization("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
                 new String[]{"e", "ee", "eeee", "eeeeeee", "eeeeeeeeee", "eeeeeeeeeeeeee"}, memo1);

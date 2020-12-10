@@ -17,7 +17,7 @@ public class TargetWordCountFromWordBank {
         System.out.println(countConstruct("enterapotentpot", new String[]{"a", "p", "ent", "enter", "ot", "o", "t"}));
 
         Map<String, Integer> memo1 = new HashMap<>();
-        int countConstruct = countConstructWithMemoization("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef",
+        int countConstruct = countConstructWithMemoization("eeeeeeeeeeeeee",
                 new String[]{"e", "ee", "eeee", "eeeeeee", "eeeeeeeeee", "eeeeeeeeeeeeee"}, memo1);
         System.out.println(countConstruct);
     }
