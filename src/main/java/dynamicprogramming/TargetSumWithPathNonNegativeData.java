@@ -10,6 +10,7 @@ import java.util.Map;
  * Combinatoric Problem
  * The Function should return any array, containing the combination of numbers,
  * if there is more than 1 combination then return any.
+ * Reuse of data is allowed to construct the target.
  */
 public class TargetSumWithPathNonNegativeData {
 

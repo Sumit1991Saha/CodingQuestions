@@ -7,6 +7,7 @@ import java.util.Map;
 /**
  * Decision Problem
  * The Function should return true or false if the combination of numbers can be constructed to make the desired sum.
+ * Reuse of data is allowed to construct the target.
  */
 public class TargetSumWithNonNegativeData {
 

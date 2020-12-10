@@ -9,6 +9,7 @@ import java.util.Map;
  * Combinatoric and Optimization Problem
  * The Function should return an array containing the shortest combination of numbers,
  * if there is more than 1 shortest combination then return any.
+ * Reuse of data is allowed to construct the target.
  */
 public class TargetSumWithShortestPathNonNegativeData {
 
