@@ -2,14 +2,13 @@ package dynamicprogramming;
 
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
  * Check if the target word can be constructed by concatenating the words from the word bank.
  * Reuse of words from word bank is allowed.
  */
-public class WordConstructFromWordBank {
+public class TargetWordConstructFromWordBank {
 
     public static void main(String[] args) {
         System.out.println(canConstruct("abcdef", new String[]{"ab", "abc", "cd", "def", "abcd"}));
@@ -22,16 +21,12 @@ public class WordConstructFromWordBank {
     }
 
     private static boolean canConstruct(String targetString, String[] wordBank) {
-        if (targetString == null) {
-            return false;
-        }
-
         if (targetString.isEmpty()) {
             return true;
         }
 
         for (String word : wordBank) {
-            if (targetString.startsWith(word)) {
+            if (targetString.indexOf(word) == 0) {
                 String suffix = targetString.substring(word.length());
                 if (canConstruct(suffix, wordBank)) {
                     return true;
@@ -46,16 +41,12 @@ public class WordConstructFromWordBank {
             return memo.get(targetString);
         }
 
-        if (targetString == null) {
-            return false;
-        }
-
         if (targetString.isEmpty()) {
             return true;
         }
 
         for (String word : wordBank) {
-            if (targetString.startsWith(word)) {
+            if (targetString.indexOf(word) == 0) {
                 String suffix = targetString.substring(word.length());
                 if (canConstructWithMemoization(suffix, wordBank, memo)) {
                     memo.put(targetString, true);
