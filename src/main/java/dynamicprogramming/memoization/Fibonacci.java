@@ -1,18 +1,17 @@
 package dynamicprogramming.memoization;
 
 import java.math.BigInteger;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
+/**
+ * Fibonacci seq generation with Recursive and Memoization approach
+ */
 public class Fibonacci {
-
-
     public static void main(String[] args) {
-        System.out.println(computeFibWithMemoziation(6, null));
-        System.out.println(computeFibWithMemoziation(7, null));
-        System.out.println(computeFibWithMemoziation(8, null));
+        System.out.println(computeFib(6));
+        System.out.println(computeFib(7));
+        System.out.println(computeFib(8));
         System.out.println(computeFibWithMemoziation(50, null));
     }
 
