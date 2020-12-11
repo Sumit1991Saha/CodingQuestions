@@ -1,4 +1,4 @@
-package dynamicprogramming;
+package dynamicprogramming.memoization;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
