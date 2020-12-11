@@ -4,12 +4,15 @@ import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * No. of possible ways to start from 1,1 and reach m,n. user can move 1 step down and 1 step right.
+ */
 public class GridTraveller {
 
     public static void main(String[] args) {
-        //System.out.println(gridTravel(1,3));
-        //System.out.println(gridTravel(2,3));
-        int m = 15, n=15;
+        System.out.println(gridTravel(1,3));
+        System.out.println(gridTravel(2,3));
+        int m = 16, n = 20;
         long startTime1 = System.currentTimeMillis();
         int val = gridTravel(m,n);
         System.out.println("Simple approach :- " + val + ", time taken :- " + (System.currentTimeMillis()-startTime1));
