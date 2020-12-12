@@ -13,6 +13,9 @@ public class TargetWordConstructFromWordBank {
     public static void main(String[] args) {
         System.out.println(canConstruct("abcdef", new String[]{"ab", "abc", "cd", "def", "abcd"}));
         System.out.println(canConstruct("skateboard", new String[]{"bo", "rd", "ate", "t", "ska", "sk", "boar"}));
+        System.out.println(canConstruct("purple", new String[]{"purp", "p", "ur", "le", "purpl"}));
+        System.out.println(canConstruct("enterapotentpot", new String[]{"a", "p", "ent", "enter", "ot", "o", "t"}));
+
 
         Map<String, Boolean> memo1 = new HashMap<>();
         boolean canConstruct = canConstructWithMemoization("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef",

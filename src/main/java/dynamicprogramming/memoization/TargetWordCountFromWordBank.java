@@ -11,7 +11,7 @@ import java.util.Map;
 public class TargetWordCountFromWordBank {
 
     public static void main(String[] args) {
-        System.out.println(countConstruct("abcdef", new String[]{"ab", "abc", "cd", "def", "abcd"}));
+        System.out.println(countConstruct("abcdef", new String[]{"ab", "abc", "cd", "def", "abcd", "ef"}));
         System.out.println(countConstruct("skateboard", new String[]{"bo", "rd", "ate", "t", "ska", "sk", "boar"}));
         System.out.println(countConstruct("purple", new String[]{"purp", "p", "ur", "le", "purpl"}));
         System.out.println(countConstruct("enterapotentpot", new String[]{"a", "p", "ent", "enter", "ot", "o", "t"}));
