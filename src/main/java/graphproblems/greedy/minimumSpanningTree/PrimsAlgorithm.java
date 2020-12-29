@@ -1,4 +1,4 @@
-package graphproblems.shortestpath;
+package graphproblems.greedy.minimumSpanningTree;
 
 import graphproblems.Edge;
 import graphproblems.Graph;
@@ -11,14 +11,15 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Set;
 
-public class DijkstraAlgorithm {
+public class PrimsAlgorithm {
+
     public static void main(String[] args) {
         int V = 9;
         Graph graph = new Graph(V);
 
         graph.addBiDirectionalEdge(0, 1, 4);
         graph.addBiDirectionalEdge(0, 7, 8);
-        graph.addBiDirectionalEdge( 1, 2, 8);
+        graph.addBiDirectionalEdge( 1, 2, 3);
         graph.addBiDirectionalEdge( 1, 7, 11);
         graph.addBiDirectionalEdge( 2, 3, 7);
         graph.addBiDirectionalEdge( 2, 8, 2);
@@ -31,42 +32,44 @@ public class DijkstraAlgorithm {
         graph.addBiDirectionalEdge( 6, 8, 6);
         graph.addBiDirectionalEdge( 7, 8, 7);
 
-        DijkstraAlgorithm dijkstra = new DijkstraAlgorithm();
-        Node[] shortestPath = dijkstra.findShortestPath(graph);
-        dijkstra.printShortestPath(shortestPath);
+        System.out.println(graph.depthFirstTraversal(graph.getVertices()[0]));
+
+        PrimsAlgorithm mst = new PrimsAlgorithm();
+        Node[] mstData = mst.findMST(graph);
+        mst.printMST(mstData);
     }
 
-    private Node[] findShortestPath(Graph graph) {
+    private Node[] findMST(Graph graph) {
         Queue<Node> minPriorityQueue = new PriorityQueue<>();
         // required for iteration since fetching random data from priority queue is not possible
-        // and also used to print the final data of the shortest path
-        Node[] dijkstraData = new Node[graph.getNoOfVertices()];
+        // and also used to print the final data of the MST
+        Node[] mstData = new Node[graph.getNoOfVertices()];
         Set<Node> visitedSet = new HashSet<>();
-        GraphUtil.preProcessAndAddDataToPriorityQueue(graph, minPriorityQueue, dijkstraData);
+        GraphUtil.preProcessAndAddDataToPriorityQueue(graph, minPriorityQueue, mstData);
 
         while (!minPriorityQueue.isEmpty()) {
             Node u = minPriorityQueue.poll();
             visitedSet.add(u);
+
             int indexOfVertexU = u.getNodeLabel();
             Vertex vertexAtU = graph.getVertices()[indexOfVertexU];
             for (Edge edge : vertexAtU.getEdges()) {
-                Node v = dijkstraData[edge.getDestinationVertex().getVertexLabel()];
-                int distanceFromUForGivenEdge = u.getVertexKey() + edge.getEdgeWeight();
-                if (!visitedSet.contains(v) && (distanceFromUForGivenEdge < v.getVertexKey())) {
+                Node v = mstData[edge.getDestinationVertex().getVertexLabel()];
+                if (!visitedSet.contains(v) && edge.getEdgeWeight() < v.getVertexKey()) {
                     minPriorityQueue.remove(v);
-                    v.setVertexKey(distanceFromUForGivenEdge);
+                    v.setVertexKey(edge.getEdgeWeight());
                     v.setParentNodeLabel(u.getNodeLabel());
                     minPriorityQueue.add(v);
                 }
             }
         }
 
-        return dijkstraData;
+        return mstData;
     }
 
-    private void printShortestPath(Node[] dijkstraData) {
-        System.out.println("Child - Parent :- Distance from - " + dijkstraData[0].getNodeLabel());
-        for (Node node : dijkstraData) {
+    private void printMST(Node[] mstData) {
+        System.out.println("Child - Parent :- Weight");
+        for (Node node : mstData) {
             System.out.println(node.getNodeLabel() + " - " + node.getParentNodeLabel() + " :- " + node.getVertexKey());
         }
     }
