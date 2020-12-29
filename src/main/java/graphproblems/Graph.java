@@ -51,7 +51,7 @@ public class Graph {
         return vertex;
     }
 
-    Set<Integer> depthFirstTraversal(Vertex root) {
+    public Set<Integer> depthFirstTraversal(Vertex root) {
         Set<Integer> visited = new LinkedHashSet<>();
         Stack<Vertex> stack = new Stack<>();
         stack.push(root);

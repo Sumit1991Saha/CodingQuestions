@@ -1,4 +1,4 @@
-package graphproblems.minimumSpanningTree;
+package graphproblems;
 
 import java.util.Objects;
 
