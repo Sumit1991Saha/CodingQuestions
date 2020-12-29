@@ -1,11 +1,6 @@
-package greedy.minimumSpanningTree.primsalgorithm;
+package graphproblems;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.Stack;
 
@@ -26,27 +21,34 @@ public class Graph {
         vertices = new Vertex[noOfVertices];
     }
 
-    public void addEdge(int source, int destination, int edgeWeight) {
-        Vertex sourceVertex;
-        Vertex destinationVertex;
-        if (vertices[source] == null) {
-            sourceVertex = new Vertex(source, null);
-            vertices[source] = sourceVertex;
-        } else {
-            sourceVertex = vertices[source];
-        }
-
-        if (vertices[destination] == null) {
-            destinationVertex = new Vertex(destination, null);
-            vertices[destination] = destinationVertex;
-        } else {
-            destinationVertex = vertices[destination];
-        }
+    public void addBiDirectionalEdge(int source, int destination, int edgeWeight) {
+        Vertex sourceVertex = getOrCreateVertex(source);
+        Vertex destinationVertex = getOrCreateVertex(destination);
 
         Edge edgeSourceToDestination = new Edge(sourceVertex, destinationVertex, edgeWeight);
-        Edge edgeDestinationToSource = new Edge(destinationVertex, sourceVertex, edgeWeight);
         sourceVertex.addEdge(edgeSourceToDestination);
+
+        Edge edgeDestinationToSource = new Edge(destinationVertex, sourceVertex, edgeWeight);
         destinationVertex.addEdge(edgeDestinationToSource);
+    }
+
+    public void addUniDirectionalEdge(int source, int destination, int edgeWeight) {
+        Vertex sourceVertex = getOrCreateVertex(source);
+        Vertex destinationVertex = getOrCreateVertex(destination);
+
+        Edge edgeSourceToDestination = new Edge(sourceVertex, destinationVertex, edgeWeight);
+        sourceVertex.addEdge(edgeSourceToDestination);
+    }
+
+    private Vertex getOrCreateVertex(int vertexLabel) {
+        Vertex vertex;
+        if (vertices[vertexLabel] == null) {
+            vertex = new Vertex(vertexLabel, null);
+            vertices[vertexLabel] = vertex;
+        } else {
+            vertex = vertices[vertexLabel];
+        }
+        return vertex;
     }
 
     Set<Integer> depthFirstTraversal(Vertex root) {

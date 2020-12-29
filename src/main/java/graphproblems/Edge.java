@@ -1,4 +1,4 @@
-package greedy.minimumSpanningTree.primsalgorithm;
+package graphproblems;
 
 public class Edge {
     private Vertex sourceVertex;

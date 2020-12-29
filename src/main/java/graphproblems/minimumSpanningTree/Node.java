@@ -1,4 +1,4 @@
-package greedy.minimumSpanningTree.primsalgorithm;
+package graphproblems.minimumSpanningTree;
 
 import java.util.Objects;
 

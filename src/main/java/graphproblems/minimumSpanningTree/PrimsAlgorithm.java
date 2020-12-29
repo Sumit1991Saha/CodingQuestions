@@ -1,18 +1,22 @@
-package greedy.minimumSpanningTree.primsalgorithm;
+package graphproblems.minimumSpanningTree;
+
+import graphproblems.Edge;
+import graphproblems.Graph;
+import graphproblems.Vertex;
 
 import java.util.HashSet;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Set;
 
-public class MinimumSpanningTreeUsingPrimsAlgorithm {
+public class PrimsAlgorithm {
 
     public static void main(String[] args) {
         int V = 9;
 
         Graph graph = new Graph(V);
 
-        MinimumSpanningTreeUsingPrimsAlgorithm mst = new MinimumSpanningTreeUsingPrimsAlgorithm();
+        PrimsAlgorithm mst = new PrimsAlgorithm();
 
         mst.addEdge(graph, 0, 1, 4);
         mst.addEdge(graph, 0, 7, 8);
@@ -36,7 +40,7 @@ public class MinimumSpanningTreeUsingPrimsAlgorithm {
     }
 
     private void addEdge(Graph graph, int source, int destination, int edgeWeight) {
-        graph.addEdge(source, destination, edgeWeight);
+        graph.addBiDirectionalEdge(source, destination, edgeWeight);
     }
 
     private void findMST(Graph graph) {
@@ -69,9 +73,9 @@ public class MinimumSpanningTreeUsingPrimsAlgorithm {
     }
 
     private void printMST(Node[] mstData) {
+        System.out.println("Child - Parent :- Weight");
         for (Node node : mstData) {
-            System.out.println(node.getNodeLabel() + " - " + node.getParentNodeLabel()
-                    + ", weight :- " + node.getVertexKey());
+            System.out.println(node.getNodeLabel() + " - " + node.getParentNodeLabel() + " :- " + node.getVertexKey());
         }
     }
 
