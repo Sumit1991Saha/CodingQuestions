@@ -22,4 +22,13 @@ public class Edge {
     public int getEdgeWeight() {
         return edgeWeight;
     }
+
+    @Override
+    public String toString() {
+        return "Edge{" +
+                "sourceVertex=" + sourceVertex +
+                ", destinationVertex=" + destinationVertex +
+                ", edgeWeight=" + edgeWeight +
+                '}';
+    }
 }

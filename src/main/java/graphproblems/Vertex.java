@@ -47,4 +47,10 @@ public class Vertex {
         return Objects.hash(getVertexLabel());
     }
 
+    @Override
+    public String toString() {
+        return "Vertex{" +
+                "vertexLabel=" + vertexLabel +
+                '}';
+    }
 }

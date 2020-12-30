@@ -2,14 +2,14 @@ public class CatsMaxPointCalculator {
 
     public static void main(String[] args) {
 
-        int currentCTScore = 2688;
-        int currentOpponentScore = 2300;
-        int currentCTMultiplier = 75;
-        int currentOpponentMultiplier = 59;
-        int laterCTMultiplier = 113;
-        int laterOpponentMultiplier = 21;
-        int remainingMinutes = 1371; // If you want the match to last full 24 hours enter the complete time.
-        int maxScorePossible = 129000;
+        int currentCTScore = 2199;
+        int currentOpponentScore = 2226;
+        int currentCTMultiplier = 81;
+        int currentOpponentMultiplier = 63;
+        int laterCTMultiplier = 102;
+        int laterOpponentMultiplier = 42;
+        int remainingMinutes = 1365; // If you want the match to last full 24 hours enter the complete time.
+        int maxScorePossible = 138000;
         //weScoreHighInitiallyThenGiveBuildingsLater(currentCTScore, currentOpponentScore,
         //      currentCTMultiplier, currentOpponentMultiplier, laterCTMultiplier, laterOpponentMultiplier, remainingMinutes);
         weScoreLowInitiallyThenTakeBuildingsLater(currentCTScore, currentOpponentScore,
