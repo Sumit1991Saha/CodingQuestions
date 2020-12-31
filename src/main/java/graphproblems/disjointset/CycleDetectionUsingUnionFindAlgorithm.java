@@ -30,35 +30,22 @@ public class CycleDetectionUsingUnionFindAlgorithm {
     private boolean isCyclePresent(Graph graph) {
         Vertex[] vertices = graph.getVertices();
         Node[] unionFindData = new Node[graph.getNoOfVertices()];
-        GraphUtil.preProcessAndAddDataToDataSet(graph, unionFindData);
+        GraphUtil.preProcessAndAddDataToDataSetForDisjointSet(graph, unionFindData);
         for (Vertex vertex : vertices) {
             for (Edge edge : vertex.getEdges()) {
                 Vertex sourceVertex = edge.getSourceVertex();
                 Vertex destinationVertex = edge.getDestinationVertex();
-                int sourceVertexRootLabel = find(unionFindData, sourceVertex.getVertexLabel());
-                int destinationVertexRootLabel = find(unionFindData, destinationVertex.getVertexLabel());
+                int sourceVertexRootLabel = UnionFind.find(unionFindData, sourceVertex.getVertexLabel());
+                int destinationVertexRootLabel = UnionFind.find(unionFindData, destinationVertex.getVertexLabel());
                 // This condition will not satisfy when both vertices forms part of disjoint set ie different connected components
                 if (sourceVertexRootLabel == destinationVertexRootLabel) {
                     return true;
                 }
-                union(unionFindData, sourceVertex, destinationVertex);
+                UnionFind.union(unionFindData, sourceVertexRootLabel, destinationVertexRootLabel);
             }
         }
-
         return false;
     }
 
-    // To find Root node label
-    private int find(Node[] unionFindData, int vertexLabel) {
-        Node nodeForVertex = unionFindData[vertexLabel];
-        if (nodeForVertex.getParentNodeLabel() == -1) {
-            return nodeForVertex.getNodeLabel();
-        }
-        return find(unionFindData, nodeForVertex.getParentNodeLabel());
-    }
 
-    private void union(Node[] unionFindData, Vertex sourceVertex, Vertex destinationVertex) {
-        Node nodeForDestinationVertex = unionFindData[destinationVertex.getVertexLabel()];
-        nodeForDestinationVertex.setParentNodeLabel(sourceVertex.getVertexLabel());
-    }
 }
