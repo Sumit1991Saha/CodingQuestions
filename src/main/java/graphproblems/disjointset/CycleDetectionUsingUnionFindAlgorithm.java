@@ -14,9 +14,9 @@ public class CycleDetectionUsingUnionFindAlgorithm {
 
         graph.addUniDirectionalEdge(0, 1, 0);
         graph.addUniDirectionalEdge(1, 2, 1);
-        graph.addUniDirectionalEdge(3,4,2);
+        //graph.addUniDirectionalEdge(3,4,2);
         graph.addUniDirectionalEdge(5, 6, 3);
-        graph.addUniDirectionalEdge(7, 8, 4);
+        //graph.addUniDirectionalEdge(7, 8, 4);
         graph.addUniDirectionalEdge(2,4, 5);
         graph.addUniDirectionalEdge(2, 5, 6);
         graph.addUniDirectionalEdge(1, 3, 7);
@@ -41,7 +41,8 @@ public class CycleDetectionUsingUnionFindAlgorithm {
                 if (sourceVertexRootLabel == destinationVertexRootLabel) {
                     return true;
                 }
-                UnionFind.union(unionFindData, sourceVertexRootLabel, destinationVertexRootLabel);
+                //UnionFind.union(unionFindData, sourceVertex.getVertexLabel(), destinationVertex.getVertexLabel());
+                UnionFind.unionOptimized(unionFindData, sourceVertex.getVertexLabel(), destinationVertex.getVertexLabel());
             }
         }
         return false;
