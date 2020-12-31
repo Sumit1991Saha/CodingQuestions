@@ -1,5 +1,7 @@
 package graphproblems.disjointset;
 
+import graphproblems.Graph;
+import graphproblems.GraphUtil;
 import graphproblems.Node;
 
 /**
@@ -11,24 +13,30 @@ import graphproblems.Node;
  *  1. Flatten the skewed parent mapping by assigning the root of the node as the parent of successive node being attached to the tree.
  *  2. Checking the subtree first ie which sub tree should get attached to which subtree using a field called rank of the tree ie size of the tree.
  */
-public class UnionFind {
+public class UnionFindAlgorithm {
+    private Node[] unionFindData;
+
+    public UnionFindAlgorithm(Graph graph) {
+        unionFindData = new Node[graph.getNoOfVertices()];
+        GraphUtil.preProcessAndAddDataToDataSetForDisjointSet(graph, unionFindData);
+    }
     // To find Root node label
-    static int find(Node[] unionFindData, int vertexLabel) {
+    public int find(int vertexLabel) {
         Node nodeForVertex = unionFindData[vertexLabel];
         if (nodeForVertex.getParentNodeLabel() == -1) {
             return nodeForVertex.getNodeLabel();
         }
-        return find(unionFindData, nodeForVertex.getParentNodeLabel());
+        return find(nodeForVertex.getParentNodeLabel());
     }
 
-    static void union(Node[] unionFindData, int sourceVertexLabel, int destinationVertexLabel) {
+    public void union(int sourceVertexLabel, int destinationVertexLabel) {
         Node nodeForDestinationVertex = unionFindData[destinationVertexLabel];
         nodeForDestinationVertex.setParentNodeLabel(sourceVertexLabel);
     }
 
-    static void unionOptimized(Node[] unionFindData, int sourceVertexLabel, int destinationVertexLabel) {
-        int sourceVertexRootLabel = find(unionFindData, sourceVertexLabel);
-        int destinationVertexRootLabel = find(unionFindData, destinationVertexLabel);
+    public void unionOptimized(int sourceVertexLabel, int destinationVertexLabel) {
+        int sourceVertexRootLabel = find(sourceVertexLabel);
+        int destinationVertexRootLabel = find(destinationVertexLabel);
         Node nodeForSourceVertexRoot = unionFindData[sourceVertexRootLabel];
         Node nodeForDestinationVertexRoot = unionFindData[destinationVertexRootLabel];
 

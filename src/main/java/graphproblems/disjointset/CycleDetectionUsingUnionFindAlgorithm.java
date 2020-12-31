@@ -2,8 +2,6 @@ package graphproblems.disjointset;
 
 import graphproblems.Edge;
 import graphproblems.Graph;
-import graphproblems.GraphUtil;
-import graphproblems.Node;
 import graphproblems.Vertex;
 
 public class CycleDetectionUsingUnionFindAlgorithm {
@@ -29,20 +27,19 @@ public class CycleDetectionUsingUnionFindAlgorithm {
 
     private boolean isCyclePresent(Graph graph) {
         Vertex[] vertices = graph.getVertices();
-        Node[] unionFindData = new Node[graph.getNoOfVertices()];
-        GraphUtil.preProcessAndAddDataToDataSetForDisjointSet(graph, unionFindData);
+        UnionFindAlgorithm unionFindAlgorithm = new UnionFindAlgorithm(graph);
         for (Vertex vertex : vertices) {
             for (Edge edge : vertex.getEdges()) {
                 Vertex sourceVertex = edge.getSourceVertex();
                 Vertex destinationVertex = edge.getDestinationVertex();
-                int sourceVertexRootLabel = UnionFind.find(unionFindData, sourceVertex.getVertexLabel());
-                int destinationVertexRootLabel = UnionFind.find(unionFindData, destinationVertex.getVertexLabel());
+                int sourceVertexRootLabel = unionFindAlgorithm.find(sourceVertex.getVertexLabel());
+                int destinationVertexRootLabel = unionFindAlgorithm.find(destinationVertex.getVertexLabel());
                 // This condition will not satisfy when both vertices forms part of disjoint set ie different connected components
                 if (sourceVertexRootLabel == destinationVertexRootLabel) {
                     return true;
                 }
-                //UnionFind.union(unionFindData, sourceVertex.getVertexLabel(), destinationVertex.getVertexLabel());
-                UnionFind.unionOptimized(unionFindData, sourceVertex.getVertexLabel(), destinationVertex.getVertexLabel());
+                //UnionFind.union(sourceVertex.getVertexLabel(), destinationVertex.getVertexLabel());
+                unionFindAlgorithm.unionOptimized(sourceVertex.getVertexLabel(), destinationVertex.getVertexLabel());
             }
         }
         return false;

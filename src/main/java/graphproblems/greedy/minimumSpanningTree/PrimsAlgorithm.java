@@ -36,7 +36,7 @@ public class PrimsAlgorithm {
 
         PrimsAlgorithm mst = new PrimsAlgorithm();
         Node[] mstData = mst.findMST(graph);
-        mst.printMST(mstData);
+        GraphUtil.printMST(mstData);
     }
 
     private Node[] findMST(Graph graph) {
@@ -65,12 +65,5 @@ public class PrimsAlgorithm {
         }
 
         return mstData;
-    }
-
-    private void printMST(Node[] mstData) {
-        System.out.println("Child - Parent :- Weight");
-        for (Node node : mstData) {
-            System.out.println(node.getNodeLabel() + " - " + node.getParentNodeLabel() + " :- " + node.getVertexKey());
-        }
     }
 }

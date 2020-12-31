@@ -25,4 +25,11 @@ public class GraphUtil {
             dataSet[i] = node;
         }
     }
+
+    public static void printMST(Node[] mstData) {
+        System.out.println("Child - Parent :- Weight");
+        for (Node node : mstData) {
+            System.out.println(node.getNodeLabel() + " - " + node.getParentNodeLabel() + " :- " + node.getVertexKey());
+        }
+    }
 }

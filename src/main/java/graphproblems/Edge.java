@@ -1,5 +1,7 @@
 package graphproblems;
 
+import java.util.Objects;
+
 public class Edge {
     private Vertex sourceVertex;
     private Vertex destinationVertex;
@@ -30,5 +32,20 @@ public class Edge {
                 ", destinationVertex=" + destinationVertex +
                 ", edgeWeight=" + edgeWeight +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Edge)) return false;
+        Edge edge = (Edge) o;
+        return getEdgeWeight() == edge.getEdgeWeight() &&
+                Objects.equals(getSourceVertex(), edge.getSourceVertex()) &&
+                Objects.equals(getDestinationVertex(), edge.getDestinationVertex());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getSourceVertex(), getDestinationVertex(), getEdgeWeight());
     }
 }
