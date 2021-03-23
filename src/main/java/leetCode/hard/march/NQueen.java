@@ -8,7 +8,7 @@ public class NQueen {
 
     public static void main(String[] args) {
         NQueen nQueen = new NQueen();
-        nQueen.solveNQueen(4);
+        nQueen.solveNQueen(8);
     }
 
     private List<List<String>> solveNQueen(int chessBoardSize) {
@@ -45,23 +45,18 @@ public class NQueen {
                              int chessBoardSize) {
         for (int col = 0; col < chessBoardSize; ++col) {
             if (isPlacingQueenPossible(row, col, queenColumnPositions, chessBoardSize)) {
-                addQueen(row, col, queenColumnPositions);
+                placeQueen(row, col, queenColumnPositions);
                 if (row + 1 == chessBoardSize) {
                     combinations.add(Arrays.copyOf(queenColumnPositions, queenColumnPositions.length));
                 } else {
                     solveNQueen(row + 1, queenColumnPositions, combinations, chessBoardSize);
                 }
-                removeQueen(row, queenColumnPositions);
             }
         }
     }
 
-    private void addQueen(int row, int col, Integer[] queenColumnPositions) {
+    private void placeQueen(int row, int col, Integer[] queenColumnPositions) {
         queenColumnPositions[row] = col;
-    }
-
-    private void removeQueen(int row, Integer[] queenColumnPositions) {
-        queenColumnPositions[row] = -1;
     }
 
     private boolean isPlacingQueenPossible(int rowToCheck, int columnToCheck,
