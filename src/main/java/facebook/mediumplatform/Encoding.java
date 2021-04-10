@@ -4,6 +4,8 @@ package facebook.mediumplatform;
  * https://medium.com/javascript-in-plain-english/facebook-coding-interview-questions-9e40bdbbec35
  */
 
+import com.sun.tools.javac.util.StringUtils;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
