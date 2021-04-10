@@ -1,7 +1,5 @@
 package codechef.may;
 
-import sun.jvm.hotspot.runtime.linux.LinuxSignals;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;

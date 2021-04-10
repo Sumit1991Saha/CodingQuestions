@@ -4,15 +4,15 @@ import java.util.*;
 
 /*
 Given a N-array tree, print the leaf nodes first, then remove the leaf nodes and print the next set of leaf nodes and so on till root node.
-                                        1
-                                 /      |         \
-                              2        3           4
-                           /.  \       |          /. \
-                       5.        6.     8      9      10
-                    /                                   \
-                 7                                       11
+                                       1
+                                /      |       \
+                              2        3         4
+                            /  \       |        /  \
+                           5    6      8      9     10
+                         /   \                         \
+                        7     12                        11
 Output should be :-
-7 6 8 9 11
+7 12 6 8 9 11
 5 3 10
 2 4
 1
@@ -25,7 +25,8 @@ public class PrintLevelByLevelLeafNodes {
         Node root = printLevelByLevelLeafNodes.constructNArrayTree();
         printLevelByLevelLeafNodes.printTreeContentLevelOrder(root);
         printLevelByLevelLeafNodes.assignHeightOfSubtreeAtNode(root);
-        printLevelByLevelLeafNodes.printLevelByLevelLeafNodes(root);
+        //printLevelByLevelLeafNodes.printLevelByLevelLeafNodes(root);
+        printLevelByLevelLeafNodes.printLevelByLevelLeafNodesInSameOrder(root);
     }
 
 
@@ -104,30 +105,34 @@ public class PrintLevelByLevelLeafNodes {
         queue.add(new Node(-1)); // -1 acts as a delimiter
     }
 
-    private void printLevelByLevelLeafNodes(Node root) {
+    private void printLevelByLevelLeafNodesInSameOrder(Node root) {
         Map<Integer, List<Node>> levelWiseLeafNodes = new TreeMap<>();
+        printLevelByLevelLeafNodesInSameOrder(root, levelWiseLeafNodes);
 
-        List<Node> queue = new LinkedList<>();
-        queue.add(root);
-        while (!queue.isEmpty()) {
-            Node node = queue.remove(0);
-            if (levelWiseLeafNodes.containsKey(node.heightOfSubTree)) {
-                levelWiseLeafNodes.get(node.heightOfSubTree).add(node);
-            } else {
-                List<Node> nodes = new LinkedList<>();
-                nodes.add(node);
-                levelWiseLeafNodes.put(node.heightOfSubTree, nodes);
-            }
-            if (node.children != null) { // condition to check for leaf nodes
-                queue.addAll(node.children);
-            }
-        }
         for (Map.Entry<Integer, List<Node>> entry : levelWiseLeafNodes.entrySet()) {
             List<Node> nodes = entry.getValue();
             for(Node node : nodes) {
                 System.out.print(node.value + " ");
             }
             System.out.println("");
+        }
+    }
+
+    private void printLevelByLevelLeafNodesInSameOrder(Node node, Map<Integer, List<Node>> levelWiseLeafNodes) {
+        if (node == null) {
+            return;
+        }
+        if (levelWiseLeafNodes.containsKey(node.heightOfSubTree)) {
+            levelWiseLeafNodes.get(node.heightOfSubTree).add(node);
+        } else {
+            List<Node> nodes = new LinkedList<>();
+            nodes.add(node);
+            levelWiseLeafNodes.put(node.heightOfSubTree, nodes);
+        }
+        if (node.children != null) {
+            for (Node child : node.children) {
+                printLevelByLevelLeafNodesInSameOrder(child, levelWiseLeafNodes);
+            }
         }
     }
 
